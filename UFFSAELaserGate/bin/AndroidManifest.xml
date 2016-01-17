@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.uffsaelasergate"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
+
+    <uses-permission android:name = "android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name = "android.permission.READ_EXTERNAL_STORAGE"/>
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainMenu"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Manual_Record_Menu"
+            android:label="@string/title_activity_manual__record__menu" >
+        </activity>
+        <activity
+            android:name=".Autocross"
+            android:label="@string/title_activity_autocross" >
+        </activity>
+        <activity
+            android:name=".Skidpad"
+            android:label="@string/title_activity_skidpad" >
+        </activity>
+        <activity
+            android:name=".Accel"
+            android:label="@string/title_activity_accel" >
+        </activity>
+        <activity
+            android:name=".Archive"
+            android:label="@string/title_activity_archive" >
+        </activity>
+        <activity
+            android:name=".Archive_Autox"
+            android:label="@string/title_activity_archive__autox" >
+        </activity>
+        <activity
+            android:name=".Archive_Skidpad"
+            android:label="@string/title_activity_archive__skidpad" >
+        </activity>
+        <activity
+            android:name=".Archive_Accel"
+            android:label="@string/title_activity_archive__accel" >
+        </activity>
+    </application>
+
+</manifest>

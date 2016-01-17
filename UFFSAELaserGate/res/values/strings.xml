@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UFFSAE Laser Gate</string>
+    <string name="action_settings">Settings</string>
+    <string name="record_times">Record Times</string>
+    <string name="archive">Archive</string>
+    <string name="bluetooth">Connect to Device</string>
+    <string name="manual_record">Record Times (Manual)</string>
+    <string name="title_activity_manual__record__menu">Manual_Record_Menu</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="autocross">Autocross</string>
+    <string name="skidpad">Skidpad</string>
+    <string name="right">Right</string>
+    <string name="left">Left</string>
+    <string name="acceleration">Acceleration</string>
+    <string name="track">Select track</string>
+    <string name="title_activity_autocross">Autocross</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="save">Save</string>
+    <string name="elapsedTime">00:00:000</string>
+    <string name="elapsed1">0. 00:00:000</string>
+    <string name="elapsed2">0. 00:00:000</string>
+    <string name="elapsed3">0. 00:00:000</string>
+    <string name="elapsed4">0. 00:00:000</string>
+    <string name="elapsed5">0. 00:00:000</string>
+    <string name="title_activity_skidpad">Skidpad</string>
+    <string name="title_activity_accel">Accel</string>
+    <string name="title_activity_archive">Archive</string>
+    <string name="title_activity_archive__autox">Archive_Autox</string>
+    <string name="title_activity_archive__skidpad">Archive_Skidpad</string>
+    <string name="title_activity_archive__accel">Archive_Accel</string>
+
+</resources>
