@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -57,24 +58,48 @@ public class Archive_Autox extends Activity {
 		Toast toast4 = Toast.makeText(context, text4, duration);
 		Toast toast5 = Toast.makeText(context, text5, duration);
 		
-		
 		TextView printFile = (TextView)findViewById(R.id.textView1);
 		    
-		    
+		/*
+		 * Find filename:
+		 
+		 		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){	
+					baseFolder = context.getExternalFilesDir(null).getAbsolutePath();
+				}
+				else{
+					baseFolder = context.getFilesDir().getAbsolutePath();
+				}
+				
+				filename = "Test.txt"
+				
+				String mFile = baseFolder + filename;
+				
+				//Creating file to write into
+				File file = new File(mFile);
+								try {
+					FileOutputStream fos = new FileOutputStream(file);
+					fos.write(majString.getBytes());
+					fos.close();	
+				
+		 */
 		    try{
-		   
-		    Bundle bun = getIntent().getExtras();
+
+		    	if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){	
+					baseFolder = context.getExternalFilesDir(null).getAbsolutePath();
+				}
+				else{
+					baseFolder = context.getFilesDir().getAbsolutePath();
+				}
 		    	
-		    if(bun != null){ 
-		    	//"key" is NOT null
-		    	//get file name from here
-		    	String filename = bun.getString("key");
+		    	String filename = "Test.txt";
+				String mFile = baseFolder + filename;
+		    	
 		    	
 		    	try{
 				
 		    		FileInputStream fis = null;
 		    		try{
-		    			fis = new FileInputStream(filename);
+		    			fis = new FileInputStream(mFile);
 		    		}
 		    		catch(FileNotFoundException e){
 		    			toast1.show();
@@ -84,11 +109,11 @@ public class Archive_Autox extends Activity {
 		    		BufferedReader br = new BufferedReader(isr);
 		    		
 		    		String test;
-		    		int akira = 0;
+		    		int count = 0;
 		    		
 		    		try{
 		    			while((test = br.readLine())!= null){
-		    				akira++;
+		    				count++;
 		    			}
 		    		}
 		    		catch(IOException e){
@@ -101,22 +126,20 @@ public class Archive_Autox extends Activity {
 		    			toast3.show();
 		    		}
 		    		
-		    		String[] array = new String[akira];
+		    		String[] array = new String[count];
 		    		
 		    		String line;
 		    		int i = 0;
 		    		try{
 		    			while((line = br.readLine()) != null){
-		    				array[i] = line;
-		    				//printFile.setText(array[i]);
+		    				array[i] = line;	
 		    				i++;
 		    			}
 		    		}
 		    		catch(IOException e){
 		    			toast4.show();
 		    		}
-		    		
-		    		
+
 		    		//I have an array of strings that I need to convert to
 		    		//a single array. I do this by looping through my array
 		    		
@@ -126,68 +149,14 @@ public class Archive_Autox extends Activity {
 		    			strTemp = strTemp + array[j];
 		    			strTemp = strTemp + "\n";
 		    		}
-		    		
 		    		printFile.setText(strTemp);
-
 				}
 				catch(Exception e){
-					
-					toast5.show();
-					//e.printStackTrace();
 				}
-		    
-				
 		    	
-		    	
-		    	//toast.show();
-		    	
-		    } else{
-		    	toast.show(); //tells us that the string is null
-		    }
 		    }catch(Exception e){
-		    	
 		    }
 		
-
-		
-		/*
-		//Receive string from Autocross
-		//initialize new TextView
-		
-		TextView printFile = (TextView)findViewById(R.id.textView1);
-		try{
-			
-			//issue right now: the try statement works but there is no data output which implies an empty file was created and opened
-						
-			
-			Bundle extras = getIntent().getExtras();
-				if(extras != null){
-					String filename = extras.getString("key");
-					toast.show();
-					
-				Scanner scan = new Scanner(openFileInput(filename));
-				String allText = ""; //read entire file
-				
-				while(scan.hasNextLine()){
-					
-					String line = scan.nextLine();
-					allText += line;
-					
-				}
-				printFile.setText(allText);
-				scan.close();
-				}
-				
-				toast1.show(); //this toast message implies that extras is null
-				
-		}
-		catch(Exception e){
-			
-			e.printStackTrace();
-		}
-		
-		*/
-		//End of printing into TextView
 	}
 
 	

@@ -1,9 +1,12 @@
 package com.example.uffsaelasergate;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 
@@ -43,7 +46,6 @@ public class Autocross extends Activity {
 	
 	//be a good coder and change to private
 	String baseFolder;
-	//Context context;
 	Boolean bool;
 	String on;
 	String time;
@@ -71,6 +73,7 @@ public class Autocross extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_autocross);
 		
+		
 		timerValue = (TextView)findViewById(R.id.textView2);
 		//elapsed1
 		recordedTime[0]= (TextView)findViewById(R.id.elapsed1);
@@ -83,6 +86,12 @@ public class Autocross extends Activity {
 		//elapsed5 
 		recordedTime[4]= (TextView)findViewById(R.id.elapsed5);
 		
+
+		
+		
+		//*************************************************************************************************
+		
+		//START
 		
 		startButton = (Button)findViewById(R.id.button1);
 		startButton.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +103,10 @@ public class Autocross extends Activity {
 				
 			}
 		});
+		
+		//*************************************************************************************************
+		
+		//STOP
 		
 		stopButton = (Button)findViewById(R.id.button2);
 		stopButton.setOnClickListener(new View.OnClickListener() {
@@ -164,25 +177,24 @@ public class Autocross extends Activity {
 			}
 		});
 		
+		
+		//*************************************************************************************************
+		
+		//SAVE
+		
 		saveButton = (Button)findViewById(R.id.button3);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 			
-			//Current issue: not receiving the data properly
 			
+		//	@SuppressWarnings("resource")
 			public void onClick(View v) {
-
-				secs = 0;
-				mins = 0;
-				milliseconds = 0;
-				
-				majString = "\n";
-				filename = "Test.txt";
-				
 				Context context = getApplicationContext();
-				CharSequence text = "Times Saved";
+			//	String text = "exists";
+			//	int duration = Toast.LENGTH_LONG;
+			//	Toast toast = Toast.makeText(context, text, duration);
 				
-				int duration = Toast.LENGTH_SHORT;
-				Toast toast = Toast.makeText(context, text, duration);
+				//Figure out if file exists.
+				//If file does not exist, create file.
 				
 				if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){	
 					baseFolder = context.getExternalFilesDir(null).getAbsolutePath();
@@ -190,8 +202,15 @@ public class Autocross extends Activity {
 				else{
 					baseFolder = context.getFilesDir().getAbsolutePath();
 				}
+			
+			//**************************************************************************
+				secs = 0;
+				mins = 0;
+				milliseconds = 0;
 				
-				//Format the long from times[]
+				majString = "\n";
+				filename = "Test.txt";
+				
 				for(int i = 0; i < click; i++){
 					secs = (int) (times[i] / 1000);
 					mins = secs/60;
@@ -206,7 +225,147 @@ public class Autocross extends Activity {
 					majString = majString + minString + "\n";
 				}
 				
+				//***********************************************************************
+				
 				String mFile = baseFolder + filename;
+							
+				//*******************************************************************
+				
+		    	String g = "globalFile.txt";
+		    	String globalFile = baseFolder + g;
+		    	
+		    	
+//****************************************************************************************		    	
+		    	
+		    	
+		    		FileInputStream gfis = null;
+
+		    			try {
+
+		    				
+								gfis = new FileInputStream(globalFile);
+								
+								
+				    			InputStreamReader isr = new InputStreamReader(gfis);
+					    		BufferedReader br = new BufferedReader(isr);
+					    		
+					    		String test;
+					    		int count = 0;
+					    		String line;
+					    		
+					    		
+					    		
+					    		//don't need this
+					    		try{
+					    			while((test = br.readLine())!= null){
+					    				//count++;
+					    				line = br.readLine();
+					    			}
+					    			//int globalCount = Integer.parseInt(line);
+					    		}
+					    		
+					    		catch(IOException e){  
+					    			
+					    		}
+					    		
+					    		/*
+					    		
+					    		try{
+					    			gfis.getChannel().position(0);
+					    		}
+					    		
+					    		catch(IOException e){
+					    			
+					    		}
+					    		
+					    		
+					    		//don't need this
+					    		String[] array = new String[count];
+					    		
+					    		String line;
+					    		int i = 0;
+					    		try{
+					    			while((line = br.readLine()) != null){
+					    				array[i] = line;	
+					    				i++;
+					    			}
+					    		}
+					    		catch(IOException e){
+					    			
+					    		}
+					    		
+					    		
+					    		//I have an array of strings that I need to convert to
+					    		//a single array. I do this by looping through my array
+					    		
+					    		String strTemp = "";
+					    		
+					    		for(int j = 0; j < array.length; j++){
+					    			strTemp = strTemp + array[j];
+					    			strTemp = strTemp + "\n";
+					    		}
+
+					    		//printFile.setText(strTemp);
+					    		
+					    		*/
+					    		
+					    		//ISSUE TO FIX HERE!!!!!!!
+					    		
+					    		//int globalCount = Integer.parseInt(strTemp);
+					    		
+					    		//int globalCount = Integer.parseInt(line);
+					    		
+					    		//MAKE FILENAME WITH THIS INTEGER
+					    		
+			    		
+					    		
+//*******************************************************************************************************************				    		
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							
+							File gfile = new File(globalFile);
+
+							FileOutputStream fos;
+							try {
+								fos = new FileOutputStream(globalFile);
+								String initial = String.format("%d", 1);
+								fos.write(initial.getBytes());
+								fos.close();
+								
+							} catch (FileNotFoundException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+
+//******************************************************************************************************************		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		    			
+		  
+				//********************************************************************
 				
 				//Creating file to write into
 				File file = new File(mFile);
@@ -214,18 +373,7 @@ public class Autocross extends Activity {
 					FileOutputStream fos = new FileOutputStream(file);
 					fos.write(majString.getBytes());
 					fos.close();	
-					//toast.show();
-					
-					
-					
-					
-					//Start new intent to pass data to Archive_AutoX
-					Intent intent = new Intent(Autocross.this, Archive_Autox.class);
-					intent.putExtra("key", mFile);
-					startActivity(intent); //takes you straight to autox archive
-					
-					
-					
+
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
